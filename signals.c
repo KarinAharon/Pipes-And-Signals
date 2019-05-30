@@ -12,7 +12,7 @@ int main()
 { 
   
   
-  
+  printf("hi")
   
   exit(0);
   
