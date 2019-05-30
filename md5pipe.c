@@ -72,9 +72,9 @@ int main()
         close(pipe1[1]);  // Close writing end of first pipe 
   
         // Read a string using first pipe 
-       // char recived_str[20]; 
-        //read(pipe1[0], recived_str, 20); 
-	//string res = md5(recived_str);
+        char recived_str[20]; 
+        read(pipe1[0], recived_str, 20); 
+	char *res = md5(recived_str).c_str();
 
    
 
