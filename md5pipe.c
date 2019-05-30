@@ -85,7 +85,6 @@ printf("plain text: ");
         close(pipe1[1]);  // Close writing end of first pipe 
   
         // Read a string using first pipe 
-        //char str[20]; 
         read(pipe1[0], recived_str, 20); 
         nsg=md5(recived_str);
         // Close oth reading ends 
