@@ -39,7 +39,7 @@ int main()
     } 
     char input_str[20];
     
-printf("Please enter a string\n");
+printf("plain text: \n");
     scanf("%s", input_str); 
 
     p = fork(); 
@@ -73,7 +73,8 @@ printf("Please enter a string\n");
         close(pipe2[0]); 
 
         if(flag==0){
-        printf("The hashed string is: \n %s\n",recived_str);
+             int process = p;
+        printf("encrypted by process %d: %s\n",recived_str);
         kill(p,SIGTERM);
         }
         wait(NULL);
