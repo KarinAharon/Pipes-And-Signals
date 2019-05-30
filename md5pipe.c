@@ -39,7 +39,7 @@ int main()
     } 
     char input_str[20];
     
-printf("plain text: \n");
+printf("plain text: ");
     scanf("%s", input_str); 
 
     p = fork(); 
@@ -73,8 +73,7 @@ printf("plain text: \n");
         close(pipe2[0]); 
 
         if(flag==0){
-             int process = p;
-        printf("encrypted by process %d: %s\n",recived_str);
+        printf("encrypted by process %d: %s",getpid(),recived_str);
         kill(p,SIGTERM);
         }
         wait(NULL);
