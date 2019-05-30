@@ -74,7 +74,7 @@ int main()
         // Read a string using first pipe 
         char recived_str[20]; 
         read(pipe1[0], recived_str, 20); 
-	char *res = md5(recived_str).c_str();
+	const char *res = md5(recived_str).c_str();
 
    
 
