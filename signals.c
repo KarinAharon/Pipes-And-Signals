@@ -37,10 +37,10 @@ for (i= 0; i < 5; i++){
   else arr[i]=p;
   	
 } 	
-// sleep(2);
+ sleep(2);
  kill(arr[4],SIGINT);
  int Zchild;
-// sleep(2);
+ sleep(2);
 
 for (int i = 0; i<5 ; i++){
 	Zchild = wait(NULL);
