@@ -13,8 +13,8 @@ int arr[5];
 int pidIndex;
 
 void sigCatcher(int sign){
-      printf("PID %d caught one", arr[pidIndex]);
-      kill(arr[pidIndex],SIGINT);
+      printf("PID %d caught one\n", arr[pidIndex]);
+       if(pidIndex>=0) kill(arr[pidIndex],SIGINT);
       exit(0);
 }
 
@@ -22,30 +22,35 @@ int main(){
 
 int p;
 int i;
+signal(SIGINT, sigCatcher);	
 
 for (i= 0; i < 5; i++){
-   p = fork();
+  p = fork();
   if(p < 0){  
     printf("Fork not successfull\n");  
     exit(0);
   }  
   if (p==0){
-    signal(SIGINT, sigCatcher);	
     printf("PID %d is ready\n", getpid());
+
     //arr[i]=0;
-    pidIndex=i;
-    break;
+    pidIndex=i-1;
+    pause();
+    exit(0);
   }
   else {
     arr[i]=p;
   }	
 } 	
-if(getpid()==arr[4])
-	kill(arr[3],SIGINT);
+  sleep(3);
+ kill(arr[4],SIGINT);
 
+int state;
+  sleep(3);
 for (int i = 0; i<5 ; i++){
-	
-	wait(NULL);
+	int Zchild = wait(&state);
+	printf("process %d is dead\n", Zchild);
+	kill(Zchild,SIGTERM);
 }
 
 
@@ -53,6 +58,6 @@ for (int i = 0; i<5 ; i++){
 
 
 
-return 0;
+exit(0);
 
 }
