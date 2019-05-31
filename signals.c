@@ -39,7 +39,6 @@ for (i= 0; i < 5; i++){
 } 	
  sleep(2);
  kill(arr[4],SIGINT);
- int state;
  int Zchild;
  sleep(2);
 
@@ -60,5 +59,4 @@ exit(0);
 void sigCatcher(int sign){
       printf("PID %d caught one\n", getpid());
       if(pidIndex>=0) kill(arr[pidIndex],SIGINT);
-      exit(0);
 }
