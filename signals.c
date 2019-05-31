@@ -44,7 +44,7 @@ for (i= 0; i < 5; i++){
  sleep(2);
 
 for (int i = 0; i<5 ; i++){
-	Zchild = wait(&state);
+	Zchild = wait(NULL);
 	printf("Process %d is dead\n", Zchild);
 	kill(Zchild,SIGTERM);
 }
