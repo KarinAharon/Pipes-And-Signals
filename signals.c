@@ -11,52 +11,55 @@
 
 int arr[5];
 int pidIndex;
-
+int p;
 
 void sigCatcher(int sign);
+void killAll(int sign);
+void catchChild(int sign);
 
 int main(){
 
-int p;
+
 int i;
 
 
 for (i= 0; i < 5; i++){
   p = fork();
-  if(p < 0){  
-    printf("Fork was not successfull\n");  
+  if(p < 0){
+    printf("Fork was not successfull\n");
     exit(0);
-  }  
+  }
   if (p==0){
-    signal(SIGINT, sigCatcher);	
+    signal(SIGINT, sigCatcher); 
     printf("PID %d is ready\n", getpid());
     pidIndex=i-1;
     pause();
     exit(0);
   }
-  else arr[i]=p;
-  	
-} 	
- sleep(2);
- kill(arr[4],SIGINT);
- int Zchild;
- sleep(2);
+  else {
+        //signal(SIGTERM, catchChild);  
+        signal(SIGINT, killAll);        
+        arr[i]=p;
+  }     
+}       
 
-for (int i = 0; i<5 ; i++){
-	Zchild = wait(NULL);
-	printf("Process %d is dead\n", Zchild);
-	kill(Zchild,SIGTERM);
-}
-
-
-
-
-
-
-exit(0);
+sleep(1);
+   kill(arr[4],SIGINT);
+ //pause();
+ pause();
+ exit(0);
 
 }
+
+void killAll(int sign){
+  if(p>0)
+     for (int i = 0; i<5 ; i++)
+        if(kill(arr[i], SIGTERM)==0)
+           printf("Process %d is dead\n", arr[i]);
+}
+
 void sigCatcher(int sign){
       printf("PID %d caught one\n", getpid());
       if(pidIndex>=0) kill(arr[pidIndex],SIGINT);
+      if(pidIndex==-1) kill(getppid(), SIGINT);
 }
