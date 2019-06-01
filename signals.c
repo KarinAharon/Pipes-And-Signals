@@ -36,8 +36,7 @@ for (i= 0; i < 5; i++){
     pause();
     exit(0);
   }
-  else {
-        //signal(SIGTERM, catchChild);  
+  else { 
         signal(SIGINT, killAll);        
         arr[i]=p;
   }     
@@ -45,7 +44,6 @@ for (i= 0; i < 5; i++){
 
 sleep(1);
    kill(arr[4],SIGINT);
- //pause();
  pause();
  exit(0);
 
