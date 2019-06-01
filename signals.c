@@ -50,7 +50,7 @@ sleep(1);
 
 void killAll(int sign){
      for (int i = 0; i<5 ; i++)
-        if(kill(arr[i], SIGTERM)==0)
+        if(kill(arr[i], SIGKILL)==0)
            printf("Process %d is dead\n", arr[i]);
 }
 
