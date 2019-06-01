@@ -15,7 +15,6 @@ int p;
 
 void sigCatcher(int sign);
 void killAll(int sign);
-void catchChild(int sign);
 
 int main(){
 
